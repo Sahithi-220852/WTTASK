@@ -1,0 +1,34 @@
+<?php
+echo "hello","<br/>";
+$x = "sahi";
+echo  "hello $x","<br/>";
+echo strlen("hello good afternoon"),"<br/>";
+echo str_word_count("welcome to my home"),"<br/>";
+echo strpos("welcome to my world","my"),"<br/>";
+$name= "neku anavasaram";
+echo strtoupper($name),"<br>";
+$name1 = "NEKU ANDHUKU";
+echo strtolower($name1),"<br>";
+$text ="welcome to ladakh";
+echo str_replace("ladakh","araku",$text),"<br>";
+$str = "araku welcomes you";
+echo strrev($str),"<br>";
+$sentence="  araku welcomes you";
+echo trim($sentence),"<br>";
+$message ="araku welcomes you";
+$words = explode(" ",$message);
+print_r($words);
+echo "<br>";
+$fname ="sahithi";
+$sname ="bhaviripudi";
+$fullname = $fname . " " . $sname;
+echo $fullname,"<br>";
+$phrase ="string slicing";
+echo substr($phrase,7,8),"<br>";
+$message2 ="sahithi bhaviripudi";
+echo substr($message2,8),"<br>";
+$text2 = "negative indexing";
+echo substr($text2,-13,9),"<br>";
+$description = "this is a \"text line\"with double quotes.";
+echo $description;
+?>
