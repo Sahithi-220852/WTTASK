@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Noble Heaven</title>
+ <link rel="stylesheet" href="style.css"> 
+</head>
+
+<body>
+<div class="overlay">
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">Rooms</a>
+    <a href="#">Facilities</a>
+    <a href="#">Contact</a>
+  </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closepopup()">&times;</span>
+      <h2>booking successfull</h2>
+      <p><b>remaining rooms:</b><span id="popuprooms"></span></p>
+    </div>
+  </div> 
+  <div class="header">
+    <h1>WELCOME TO HOTEL NOBLE HEAVEN</h1>
+    <p>Experience Luxury and Comfort</p>
+  </div>
+   <section id="hotel-details">
+        <h2>HOTEL BOOKING DETAILS</h2>
+        <p><b>HOTEL NAME:</b><span id="hotelname"></span></p>
+        <p><b>ROOM COST:</b><span id="roomprice"></span></p>
+        <p><b>AVILABLE ROOMS:</b><span id="availablerooms"></span></p>
+        <p><b>BOOKING STATUS:</b><span id="bookingStatus"></span></p>
+        <button onclick="bookroom()" style="color: rgb(38, 0, 255);">bookroom</button>
+   </section>
+  </div>  
+  <div class="room-card">
+    <img src="vip room.jfif" class="room-img">
+    <video controls>
+     <source src="https://youtube.com/shorts/ykfcnbzgkY0?si=NzJn5niz0VxzD7rp">
+</video>
+    <div class="room-info">
+      <h2 class="room-title">Deluxe Room</h2>
+      <p>With AC / Without AC</p>
+      <span class="price">₹5,999 / night</span><br><br>
+      <button class="book-btn">Book Now</button>
+      <label>Choose slot:</label>
+      <select>
+        <option>9:00 - 2:00</option>
+        <option>2:00 - 5:00</option>
+        <option>5:00 - 9:00</option>
+      </select>
+      <a href="https://www.zainalodge-ghana.com">any query use this</a>
+    </div>
+  </div>
+
+  <div class="room-card">
+    <img src="couple room.jfif" class="room-img">
+    <video controls>
+    <source src ="https://youtube.com/shorts/I5e7IdPyluY?si=Ik9H-rOSpq9mhjpp">
+    </video>
+    <div class="room-info">
+      <h2 class="room-title">Couple Room</h2>
+      <p>With AC / Without AC</p>
+      <span class="price">₹4,499 / night</span><br><br>
+      <button class="book-btn">Book Now</button>
+      <label>Choose slot:</label>
+      <select>
+        <option>9:00 - 2:00</option>
+        <option>2:00 - 5:00</option>
+        <option>5:00 - 9:00</option>
+      </select>
+      <a href="https://www.zainalodge-ghana.com">any query use this</a>
+    </div>
+  </div>
+
+  <div class="room-card">
+    <img src="family room.jfif" class="room-img">
+    <video controls>
+    <source src="https://youtube.com/shorts/SgAglZqpgEo?si=fzb82GJ_uy4rLn5R">
+    </video>  
+    <div class="room-info">
+      <h2 class="room-title">Family Room</h2>
+      <p>With AC / Without AC</p>
+      <span class="price">₹6,999 / night</span><br><br>
+      <button class="book-btn">Book Now</button>
+      <label>Choose slot:</label>
+      <select>
+        <option>9:00 - 2:00</option>
+        <option>2:00 - 5:00</option>
+        <option>5:00 - 9:00</option>
+      </select>
+      <a href="https://www.zainalodge-ghana.com">any query use this</a>
+    </div>
+  </div>
+
+  <div class="center-btn">
+  <a href="booking form.html" target="_blank" class="external-link">Book now</a>
+  </div>
+  <div class="features">
+    <h2>Why Choose Our Hotel?</h2>
+    <div class="feature-box">🌅 Rooftop View</div>
+    <div class="feature-box">🍽 Free Breakfast</div>
+    <div class="feature-box">📶 Free WiFi</div>
+    <div class="feature-box">🚗 Free Parking</div>
+  </div>
+
+  <div class="reviews">
+    <h2>Guest Reviews</h2>
+    <div class="review-box">
+      ⭐⭐⭐⭐⭐  
+      <p>"Amazing stay, very clean rooms!"</p>
+      <p><b>-kohli</b></p>
+    </div>
+
+    <div class="review-box">
+      ⭐⭐⭐⭐☆  
+      <p>"Great service and friendly staff."</p>
+      <p><b>-anuskha</b></P>
+    </div>
+  </div> 
+  
+  <table id="t1" border=1 align="center">
+  <caption>FILL YOUR DETAILS</caption>  
+            <tr>
+                <th>name</th>
+                <th>AGE</th>
+                <th>DAYS </th>
+            </tr>
+            <tr>
+                <td>amala</td>
+                 <td>30</td>
+                  <td>3</td>
+            </tr>
+            <tr>
+                <td>anuskha</td>
+                 <td>20</td>
+                  <td>2</td>
+            </tr>
+        </table>  
+     <script src="script.js"></script>      
+  <div class="footer">
+    <p>📍 Hyderabad, India</p>
+    <p>📞 98765 43210 | ✉ nobleheaven@gmail.com</p>
+    <p> 2025 Hotel Noble Heaven</p>
+  </div>
+
+</div>
+</body>
+</html>
