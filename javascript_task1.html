@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Task 1-7 - Web Technology</title>
+    <meta name="description" content="Comprehensive JavaScript tasks implementation for Web Technology course.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --glass: rgba(30, 41, 59, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .task-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .task-num {
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .interaction-area {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        button {
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        button.outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        button.outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        .output {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.4rem;
+            word-break: break-all;
+        }
+
+        #style-target {
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        #hover-element {
+            cursor: pointer;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed var(--text-muted);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: -0.5rem;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>JavaScript Essentials</h1>
+        <p class="subtitle">Implementing Tasks 1 through 7</p>
+    </header>
+
+    <div class="task-grid">
+        <!-- Task 1: Variables -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Define Variables</span>
+                <span class="task-num">Task 1</span>
+            </div>
+            <p>Declaring variables using <code>var</code>, <code>let</code>, and <code>const</code>.</p>
+            <div class="interaction-area">
+                <button onclick="runTask1()">Run Variable Demo</button>
+                <div id="output1" class="output">Click button to log to console & show here...</div>
+            </div>
+        </section>
+
+        <!-- Task 2: Functions -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Basic Functions</span>
+                <span class="task-num">Task 2</span>
+            </div>
+            <p>Traditional functions and Arrow functions for Math operations.</p>
+            <div class="interaction-area">
+                <div class="btn-group">
+                    <button onclick="calculateAdd(10, 5)">Add (10+5)</button>
+                    <button class="outline" onclick="calculateSub(20, 8)">Sub (20-8)</button>
+                </div>
+                <div id="output2" class="output">Results will appear here...</div>
+            </div>
+        </section>
+
+        <!-- Task 3: Built-in Functions -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Built-in Functions</span>
+                <span class="task-num">Task 3</span>
+            </div>
+            <p>Using <code>alert()</code>, <code>prompt()</code>, and <code>console.log()</code>.</p>
+            <div class="interaction-area">
+                <div class="btn-group">
+                    <button onclick="showAlert()">Show Alert</button>
+                    <button class="outline" onclick="showPrompt()">Show Prompt</button>
+                </div>
+                <div id="output3" class="output">Console is also active!</div>
+            </div>
+        </section>
+
+        <!-- Task 4: Content Manipulation -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Manipulate HTML</span>
+                <span class="task-num">Task 4</span>
+            </div>
+            <p id="target-paragraph">This text will change when you click the button below.</p>
+            <div class="interaction-area">
+                <div class="btn-group">
+                    <button onclick="changeText()">Change Paragraph</button>
+                    <button class="outline" onclick="addContent()">Add New Item</button>
+                    <button style="background:var(--danger)" onclick="removeContent()">Remove Last</button>
+                </div>
+                <ul id="dynamic-list" style="margin-left: 20px;">
+                    <li>Original Item</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Task 5: Styling Tags -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Style HTML Tags</span>
+                <span class="task-num">Task 5</span>
+            </div>
+            <div id="style-target">Stylish Element</div>
+            <div class="interaction-area">
+                <div class="btn-group">
+                    <button onclick="applyStyles()">Apply Styles</button>
+                    <button class="outline" onclick="toggleStyle()">Toggle Theme</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 6: Events & Functions -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Events & Functions</span>
+                <span class="task-num">Task 6</span>
+            </div>
+            <div id="hover-element" onmouseover="handleMouseOver()" onmouseout="handleMouseOut()">
+                Hover over me!
+            </div>
+            <div class="interaction-area">
+                <form id="task6-form" onsubmit="handleFormSubmit(event)">
+                    <input type="text" placeholder="Type something for console log..." required>
+                    <button type="submit" style="margin-top: 10px; width: 100%;">Submit Form</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Task 7: Interactive Webpage -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Interactive Page</span>
+                <span class="task-num">Task 7</span>
+            </div>
+            <div class="interaction-area">
+                <button onclick="greetUser()">Personalized Greeting</button>
+                <div id="greeting-output" class="output">Welcome!</div>
+                
+                <hr style="opacity: 0.1">
+                
+                <form id="val-form" onsubmit="validateAndSubmit(event)">
+                    <input type="email" id="user-email" placeholder="Email validation..." required>
+                    <div id="email-error" class="error-msg"></div>
+                    <button type="submit" style="margin-top: 10px;">Validate & Send</button>
+                </form>
+
+                <button class="outline" onclick="window.print()">Print This Page</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>JavaScript Logic Implementation &copy; 2026</p>
+    </footer>
+</div>
+
+<script>
+    // --- TASK 1: Variables ---
+    function runTask1() {
+        // Use var (Global/Function scoped)
+        var name = "John Doe";
+        // Use let (Block scoped)
+        let age = 21;
+        // Use const (Constant)
+        const country = "India";
+
+        console.log("Task 1 - Name:", name);
+        console.log("Task 1 - Age:", age);
+        console.log("Task 1 - Country:", country);
+
+        document.getElementById('output1').innerText = `Logged: ${name}, ${age}, ${country}`;
+    }
+
+    // --- TASK 2: Basic Functions ---
+    // Traditional Function
+    function calculateAdd(a, b) {
+        const result = a + b;
+        document.getElementById('output2').innerText = `Addition Result: ${result}`;
+        console.log("Addition:", result);
+    }
+
+    // Arrow Function
+    const calculateSub = (a, b) => {
+        const result = a - b;
+        document.getElementById('output2').innerText = `Subtraction Result: ${result}`;
+        console.log("Subtraction:", result);
+    }
+
+    // --- TASK 3: Built-in Functions ---
+    function showAlert() {
+        alert("This is a JavaScript Alert message!");
+    }
+
+    function showPrompt() {
+        const userInput = prompt("Please enter some text:");
+        if (userInput) {
+            document.getElementById('output3').innerText = `User entered: ${userInput}`;
+            console.log("User Input via prompt:", userInput);
+        }
+    }
+
+    // --- TASK 4: Content Manipulation ---
+    function changeText() {
+        const p = document.getElementById('target-paragraph');
+        p.innerText = "The content has been changed dynamically using JS!";
+        p.style.color = "var(--accent)";
+    }
+
+    function addContent() {
+        const list = document.getElementById('dynamic-list');
+        const newItem = document.createElement('li');
+        newItem.innerText = `New Item ${list.children.length + 1}`;
+        list.appendChild(newItem);
+    }
+
+    function removeContent() {
+        const list = document.getElementById('dynamic-list');
+        if (list.children.length > 0) {
+            list.removeChild(list.lastElementChild);
+        }
+    }
+
+    // --- TASK 5: Style HTML Tags ---
+    function applyStyles() {
+        const target = document.getElementById('style-target');
+        target.style.color = "#ffffff";
+        target.style.fontSize = "24px";
+        target.style.backgroundColor = "var(--primary)";
+        target.style.border = "2px solid white";
+        console.log("Applied inline styles to element");
+    }
+
+    let isDark = false;
+    function toggleStyle() {
+        const target = document.getElementById('style-target');
+        if (!isDark) {
+            target.style.backgroundColor = "#fff";
+            target.style.color = "#000";
+            isDark = true;
+        } else {
+            target.style.backgroundColor = "rgba(255,255,255,0.1)";
+            target.style.color = "var(--text-main)";
+            isDark = false;
+        }
+    }
+
+    // --- TASK 6: Events & Functions ---
+    function handleMouseOver() {
+        const el = document.getElementById('hover-element');
+        el.style.borderColor = "var(--accent)";
+        el.style.transform = "scale(1.05)";
+        el.innerText = "Wow! You hovered!";
+    }
+
+    function handleMouseOut() {
+        const el = document.getElementById('hover-element');
+        el.style.borderColor = "var(--text-muted)";
+        el.style.transform = "scale(1)";
+        el.innerText = "Hover over me!";
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        const input = event.target.querySelector('input').value;
+        console.log("Form Submitted! Value:", input);
+        alert(`Form submitted with: ${input}\nCheck console for details.`);
+    }
+
+    // --- TASK 7: Interactive Webpage ---
+    function greetUser() {
+        const name = prompt("What is your name?");
+        if (name) {
+            const msg = `Hello ${name}, welcome to our interactive site!`;
+            document.getElementById('greeting-output').innerText = msg;
+            console.log(msg);
+        }
+    }
+
+    function validateAndSubmit(event) {
+        event.preventDefault();
+        const email = document.getElementById('user-email').value;
+        const errorDiv = document.getElementById('email-error');
+        
+        if (!email.includes('@')) {
+            errorDiv.innerText = "Invalid email format! Must contain @";
+            console.warn("Validation failed: Email lacks @");
+        } else {
+            errorDiv.innerText = "";
+            alert("Success! Form is valid.");
+            console.log("Form validated and ready to send.");
+        }
+    }
+</script>
+
+</body>
+</html>
